@@ -13,6 +13,48 @@ Time - O(n log n)
 Space - O(1)
 **/
 
-function areThereDuplicates() {
-  // good luck. (supply any arguments you deem necessary.)
+//Time -O(n)
+//Space -O(n)
+
+// function areThereDuplicates(...args) {
+// if (!args.length) return false;
+
+//   let uniqueValues = {};
+
+//   for (let i = 0; i < args.length; i++) {
+
+//     if (uniqueValues[args[i]]) {
+//       return true;
+//     } else {
+//       uniqueValues[args[i]] = true;
+//     }
+//   }
+//   return false;
+// }
+
+// Time - O(n log n)
+// Space - O(1)
+function areThereDuplicates(...args) {
+  if (!args.length) return false;
+  args.sort((a, b) => String(a).charCodeAt() - String(b).charCodeAt());
+  let right = args.length;
+  let left = 0;
+  while (left < right) {
+    if (args[left] === args[left + 1]) {
+      return true;
+    } else {
+      left++;
+    }
+    if (args[right] === args[right - 1]) {
+      return true;
+    } else {
+      right--;
+    }
+  }
+  return false;
 }
+
+areThereDuplicates(1, 5, 3,6);
+areThereDuplicates(1, 2, 2);
+areThereDuplicates("a", "b", "c", "d");
+areThereDuplicates("a", "b", "c", "d", "a");
