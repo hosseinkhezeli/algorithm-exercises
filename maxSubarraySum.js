@@ -16,6 +16,18 @@ Time Complexity - O(N)
 Space Complexity - 0(1)
 **/
 
-function maxSubarraySum(){
-  // add whatever parameters you deem necessary - good luck!
+function maxSubarraySum(arr, interval) {
+  let left = 0,
+    maxSum = 0,
+    sum = 0;
+  if (arr.length < interval) return null;
+  for (let right = 0; right < arr.length; right++) {
+    sum += arr[right];
+    if (right >= interval - 1) {
+      maxSum = Math.max(maxSum, sum);
+      sum = sum - arr[left];
+      left = right;
+    }
+  }
+  return maxSum;
 }

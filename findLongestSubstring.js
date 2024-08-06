@@ -13,6 +13,20 @@ findLongestSubstring('thisishowwedoit') // 6
 Time Complexity - O(n)
 **/
 
-function findLongestSubstring(){
-  // add whatever parameters you deem necessary - good luck!
+function findLongestSubstring(str) {
+  if (str.length < 1) return 0;
+  const char = {};
+  let left = 0;
+  let maxLength = 0;
+
+  for (let right = 0; right < str.length; right++) {
+    if (char[str[right]]) {
+      left = Math.max(left, char[str[right]]);
+    }
+
+    char[str[right]] = right;
+
+    maxLength = Math.max(maxLength, right - left);
+  }
+  return maxLength;
 }

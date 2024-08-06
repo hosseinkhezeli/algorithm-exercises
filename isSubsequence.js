@@ -15,6 +15,33 @@ Space Complexity - 0(1)
 
 **/
 
-function isSubsequence() {
-  // good luck. Add any arguments you deem necessary.
+function isSubsequence(subStr, str) {
+  const char = [];
+  let subStrLeft = 0;
+
+  if (subStr.length > str.length) return false;
+
+  for (let right = 0; right < str.length; right++) {
+    if (subStr[subStrLeft] === str[right]) {
+      char.push(subStr[subStrLeft]);
+      subStrLeft++;
+    }
+  }
+  return subStr === char.join("");
+}
+
+function isSubsequenceAi(subStr, str) {
+  let subStrLeft = 0;
+  if (subStr.length > str.length) return false;
+  for (let right = 0; right < str.length; right++) {
+    if (subStr[subStrLeft] === str[right]) {
+      subStrLeft++;
+    }
+
+    if (subStrLeft === subStr.length) {
+      return true;
+    }
+  }
+
+  return subStrLeft === subStr.length;
 }
